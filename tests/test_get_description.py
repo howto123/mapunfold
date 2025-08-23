@@ -1,6 +1,6 @@
 import json
 
-from src import mapunfold
+from src.mapunfold import get_description
 import pytest
 
 with open('tests/bps_names.json', 'r') as file:
@@ -11,6 +11,9 @@ async def test_get_description_runs():
 
     bps_name = bps_names[2]['bps_name']
 
-    description = await mapunfold.get_description(bps_name)
+    [prompt, description ] = await get_description(bps_name)
+
+    print("prompt: ", prompt)
+    print("description: ", description)
 
     assert description is not None

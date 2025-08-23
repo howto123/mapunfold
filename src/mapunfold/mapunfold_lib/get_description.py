@@ -4,6 +4,7 @@ import aiohttp
 
 from .description import Description
 from .urls import *
+from .create_texts import create_texts
 
 
 # no property bps or bpsname -> ignored
@@ -58,10 +59,11 @@ async def get_sid(bps_name: str):
 
 
 
-def pull_info_together(treppen_and_rampen, billetautomats, billetentwerters, sids):
+def pull_info_together(bps_name, treppen_and_rampen, billetautomats, billetentwerters, sids):
 
     obj = {}
 
+    obj["bps_name"] = bps_name
     obj["treppen_and_rampen"] = treppen_and_rampen
     obj["billetautomats"] = billetautomats
     obj["billetentwerters"] = billetentwerters
@@ -77,7 +79,7 @@ async def gather_info(bps_name):
     billetentwerters = await get_billetentwerter(bps_name)
     sids = await get_sid(bps_name)
 
-    info = pull_info_together(treppen_and_rampen, billetautomats, billetentwerters, sids)
+    info = pull_info_together(bps_name, treppen_and_rampen, billetautomats, billetentwerters, sids)
 
     return info
 
@@ -88,9 +90,6 @@ async def gather_info(bps_name):
     # info = pull_info_together(info_open_transport_data, info_open_street_map, info_insa_export_api)
     # return info
 
-
-async def create_texts(info):
-    raise NotImplementedError()
 
 
 async def get_description(bps_name: str) -> Description:
