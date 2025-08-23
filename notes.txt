@@ -14,3 +14,62 @@ obj = json.loads('{"geopos":{"lon":6.630116459416313,"lat":46.516875183783824}}'
 
 
 Δλ(degrees)≈111319.49cosφdistance (m)​
+
+
+
+
+[
+"AA",
+"AAT",
+"ABO",
+"AD",
+"AF",
+"AI",
+"AIG",
+"ALL",
+"ALN",
+"ALT",
+"ALTD",
+"AN",
+"AP",
+"ARB",
+"AUSG",
+"AUV",
+"AW",
+"BAA",
+"BAAL",
+"BAE",
+"BAL"
+]
+
+Aarau
+------
+billetentwerter: 15
+{
+
+    "linie":649,
+    "km":41.676,
+    "bps":"AA",
+    "bps_name":"Aarau",
+    "befestigungsart":null,
+    "befestigungsart_id":null,
+    "ipid":628045,
+    "bemerkung":null,
+    "gleisebene":"Ja",
+    "eigentumer":"SBB Personenverkehr",
+    "anteil_eigentum":100,
+    "eigentumer_gruppe":"SBB",
+    "miteigentumer":null,
+    "anteil_miteigentum":null,
+    "miteigentumer_gruppe":null,
+    "miteigentumer_bemerkung":null,
+    "geopos":{
+        "lon":8.049262186291635,
+        "lat":47.3906476811731
+    }
+
+}
+
+
+dienststellen
+-----------------------
