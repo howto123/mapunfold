@@ -13,7 +13,7 @@ def store_to_db(descriptions: list[Description], sqlite_db_name: str = DEFAULT_D
 
     cur.execute("""
         CREATE TABLE IF NOT EXISTS descriptions (
-            id TEXT PRIMARY KEY,
+            bps_name TEXT PRIMARY KEY,
             en TEXT,
             de TEXT,
             fr TEXT,
@@ -23,9 +23,9 @@ def store_to_db(descriptions: list[Description], sqlite_db_name: str = DEFAULT_D
 
     for desc in descriptions:
         cur.execute("""
-                INSERT INTO descriptions (id, en, de, fr, it)
+                INSERT INTO descriptions (bps_name, en, de, fr, it)
                 VALUES (?, ?, ?, ?, ?)
-            """, (desc.id, desc.en, desc.de, desc.fr, desc.it))
+            """, (desc.bps_name, desc.en, desc.de, desc.fr, desc.it))
 
     con.commit()
     con.close()
@@ -42,7 +42,7 @@ def get_from_db(db_name: str = DEFAULT_DB_NAME) -> list[Description]:
     cur = con.cursor()
 
     # Fetch all rows from the descriptions table
-    cur.execute("SELECT id, en, de, fr, it FROM descriptions")
+    cur.execute("SELECT bps_name, en, de, fr, it FROM descriptions")
     rows = cur.fetchall()
 
     # Close the connection

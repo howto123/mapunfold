@@ -15,6 +15,10 @@ Pull and start the container:
 
     docker run -d -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
 
+Or, if the container already exists:
+
+    docker start ollama
+
 The model needs to be installed, e.g. llama2:
 
     docker exec -it ollama ollama pull llama2

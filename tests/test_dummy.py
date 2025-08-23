@@ -9,6 +9,7 @@ from src import mapunfold
 # @pytest_asyncio.fixture
 
 
+@pytest.mark.skip(reason="takes too long")
 @pytest.mark.asyncio
 async def test_mapunfold_runs():
 

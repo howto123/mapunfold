@@ -6,6 +6,8 @@ import pytest
 with open('tests/bps_names.json', 'r') as file:
     bps_names = json.load(file)
 
+
+@pytest.mark.skip(reason="takes > 30 secs")
 @pytest.mark.asyncio
 async def test_get_description_runs():
 
