@@ -11,8 +11,22 @@ from .urls import *
 #     pass
 
 async def get_treppen_and_ramps(bps_name: str):
-
     url = get_rampe_treppe_url(bps_name)
+
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as resp:
+            data = await resp.json()
+            results = data["results"]
+            return results
+
+# no bps or bps_name -> ignored
+# def get_wartehallen():
+#     pass
+
+# sektortafel -> according to discord, this is not relevant, ignored
+
+async def get_billetautomat(bps_name: str):
+    url = get_billetautomat_url(bps_name)
 
     async with aiohttp.ClientSession() as session:
         async with session.get(url) as resp:
