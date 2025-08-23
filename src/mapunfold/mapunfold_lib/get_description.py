@@ -4,6 +4,7 @@ import aiohttp
 
 from .description import Description
 from .urls import *
+from .create_texts import create_texts
 
 
 # no property bps or bpsname -> ignored
@@ -20,47 +21,79 @@ async def get_treppen_and_ramps(bps_name: str):
             results = data["results"]
             return results
 
+# no bps or bps_name -> ignored
+# def get_wartehallen():
+#     pass
+
+# sektortafel -> according to discord, this is not relevant, ignored
+
+async def get_billetautomat(bps_name: str):
+
+    url = get_billetautomat_url(bps_name)
+
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as resp:
+            data = await resp.json()
+            results = data["results"]
+            return results
+
+async def get_billetentwerter(bps_name: str):
+
+    url = get_billetentwerter_url(bps_name)
+
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as resp:
+            data = await resp.json()
+            results = data["results"]
+            return results
+
+async def get_sid(bps_name: str):
+
+    url = get_sid_url(bps_name)
+
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as resp:
+            data = await resp.json()
+            results = data["results"]
+            return results
 
 
-def get_open_transport_info():
-    pass
+
+def pull_info_together(bps_name, treppen_and_rampen, billetautomats, billetentwerters, sids):
+
+    obj = {}
+
+    obj["bps_name"] = bps_name
+    obj["treppen_and_rampen"] = treppen_and_rampen
+    obj["billetautomats"] = billetautomats
+    obj["billetentwerters"] = billetentwerters
+    obj["sids"] = sids
+
+    return obj
 
 
-def get_osm_info():
-    pass
+async def gather_info(bps_name):
 
+    treppen_and_rampen = await get_treppen_and_ramps(bps_name)
+    billetautomats = await get_billetautomat(bps_name)
+    billetentwerters = await get_billetentwerter(bps_name)
+    sids = await get_sid(bps_name)
 
-def get_insa_export_info():
-    pass
+    info = pull_info_together(bps_name, treppen_and_rampen, billetautomats, billetentwerters, sids)
 
-
-def pull_info_together(info_open_transport_data, info_open_street_map, info_insa_export_api):
-    pass
-
-
-async def gather_info(id):
-
-
-    info_open_transport_data = get_open_transport_info()
-
-    info_open_street_map = get_osm_info()
-
-    info_insa_export_api = get_insa_export_info()
-
-
-
-
-
-    info = pull_info_together(info_open_transport_data, info_open_street_map, info_insa_export_api)
     return info
 
 
-async def create_texts(info):
-    pass
 
 
-async def get_description(station_id: str) -> Description:
 
-    info = await gather_info(station_id)
+    # info = pull_info_together(info_open_transport_data, info_open_street_map, info_insa_export_api)
+    # return info
+
+
+
+async def get_description(bps_name: str) -> Description:
+
+    info = await gather_info(bps_name)
     result = await create_texts(info)
     return result
