@@ -5,19 +5,26 @@ Database name: mapunfold.db
 
 Create venv
 
-    python -m venv mapunfold_venv
+    python -m venv .mapunfold_venv
 
 Activate venv
 
-    source mapunfold_venv/bin/activate
+    source .mapunfold_venv/bin/activate
 
-Run the module
+Install dependencies
 
+     pip install -r requirements.txt
 
+Run the module (from inside the venv)
 
+    python -m src.mapunfold
+
+Tests
+
+    pytest
 
 ## Notes
 
-Install current module into venv
+Update requirements:
 
-     pip install -e .
+    pip freeze > requirements.txt
