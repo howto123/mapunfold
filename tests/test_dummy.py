@@ -8,10 +8,11 @@ from src import mapunfold
 # @pytest.fixture
 # @pytest_asyncio.fixture
 
-def test_answer():
 
-    list = []
-    mapunfold.run(list)
+@pytest.mark.asyncio
+async def test_mapunfold_runs():
+
+    await mapunfold.main()
 
 
 @pytest.mark.asyncio
@@ -22,3 +23,5 @@ async def test_async_call():
             text = await response.text()
             assert response.status == 200
             print(text)
+
+

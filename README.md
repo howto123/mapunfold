@@ -2,20 +2,10 @@
 
 ## Visualization
 
-Change to the folder `visualize`. 
+Change to the folder `visualize`.
 
-Install dependencies
+There is a dedicated README.
 
-    npm install
-
-Dev mode
-
-    npm run dev
-
-Screenshots
-
-![found](/screenshots/visualize_found.png)
-![not found](/screenshots/visualize_not_found.png)
 
 Database name: mapunfold.db
 ## Commands
