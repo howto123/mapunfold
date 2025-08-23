@@ -1,4 +1,4 @@
-mapunfold_venv
+.mapunfold_venvn
 
 #SQLite database for testing
 mapunfold.db
@@ -28,7 +28,7 @@ dist/
 downloads/
 eggs/
 .eggs/
-#lib/
+lib/
 lib64/
 parts/
 sdist/
