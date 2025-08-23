@@ -1,0 +1,16 @@
+At your latitude φ ≈ 46.5169°:
+
+1° of longitude ≈ 76,603.5 m
+
+100 m corresponds to ≈ 0.001305° (≈ 0.0783′ ≈ 4.70″) of longitude.
+
+
+
+
+
+
+import json
+obj = json.loads('{"geopos":{"lon":6.630116459416313,"lat":46.516875183783824}}')
+
+
+Δλ(degrees)≈111319.49cosφdistance (m)​
