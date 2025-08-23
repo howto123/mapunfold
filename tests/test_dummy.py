@@ -23,5 +23,3 @@ async def test_async_call():
             text = await response.text()
             assert response.status == 200
             print(text)
-
-

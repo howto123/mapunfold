@@ -34,8 +34,8 @@ async def test_billetautomat_url():
             assert len(results) > 0
 
 @pytest.mark.asyncio
-async def test_billetautomat_url():
-    name = bps_names[3]["bps_name"]
+async def test_billetentwerter_url():
+    name = bps_names[5]["bps_name"]
     url = get_billetentwerter_url(name)
 
     async with aiohttp.ClientSession() as session:
@@ -44,3 +44,17 @@ async def test_billetautomat_url():
             data = await resp.json()
             results = data["results"]
             assert len(results) > 0
+
+@pytest.mark.asyncio
+async def test_sid_url():
+    name = bps_names[3]["bps_name"]
+    url = get_sid_url(name)
+
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as resp:
+            assert resp.status == 200
+            data = await resp.json()
+            results = data["results"]
+            assert len(results) > 0
+
+
