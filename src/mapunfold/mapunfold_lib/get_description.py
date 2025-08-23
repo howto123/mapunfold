@@ -34,18 +34,15 @@ async def get_billetautomat(bps_name: str):
             results = data["results"]
             return results
 
+async def get_billetentwerter(bps_name: str):
+    url = get_billetentwerter_url(bps_name)
 
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as resp:
+            data = await resp.json()
+            results = data["results"]
+            return results
 
-def get_open_transport_info():
-    pass
-
-
-def get_osm_info():
-    pass
-
-
-def get_insa_export_info():
-    pass
 
 
 def pull_info_together(info_open_transport_data, info_open_street_map, info_insa_export_api):
